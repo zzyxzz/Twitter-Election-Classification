@@ -1,3 +1,5 @@
+# codes adapted/modified from https://github.com/dennybritz/cnn-text-classification-tf
+
 import tensorflow as tf
 from sklearn import metrics
 import os
