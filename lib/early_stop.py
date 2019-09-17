@@ -19,7 +19,7 @@ class EarlyStopping(object):
             self.consecutive_decrease = 0
         # print self.consecutive_decrease, self.scores
         if self.consecutive_decrease >= self.threshod:
-            print("Early stopping criteria {} reached! Stopped at step: {}".format(self.threshod, step))
+            print "Early stopping criteria {} reached! Stopped at step: {}".format(self.threshod, step)
             return True
         else:
             return False
