@@ -1,5 +1,5 @@
 import click
-from nltk.stem.snowball import EnglishStemmer,SpanishStemmer
+from nltk.stem.snowball import EnglishStemmer, SpanishStemmer, stopwords
 import csv
 import os
 import regex as re
@@ -8,6 +8,7 @@ from unidecode import unidecode
 # rule = re.compile(r"[@#\p{Alpha}]\w{2,}", flags=re.UNICODE)
 rule = re.compile(r"[@#\p{Alpha}][\w]+|[A-Z]{2,}|\d+", flags=re.UNICODE)
 http = re.compile(r"https?[\w:./]+")
+
 
 class ProcessLineSentence(object):
     """
@@ -19,7 +20,10 @@ class ProcessLineSentence(object):
         self.dataPath = os.path.expanduser(dataPath)
         self.max_sentence_length = max_sentence_length
         self.limit = limit
-        self.stopwords = self.load_stopword(path=stopwordPath)
+        if stopwordPath:
+            self.stopwords = self.load_stopword(path=stopwordPath)
+        else:
+            self.stopwords = ('####')
         self.stemmer = stemmer
         self.label = label
 
@@ -57,9 +61,10 @@ class ProcessLineSentence(object):
             _c = 0
             for line in reader:
                 text = line['text'].decode('utf-8').lower()
-                text = http.sub('http_link', text)
+                # text = http.sub('http_link', text)
                 tokens = rule.findall(text)
-                tokens = self.removeStopwords(line=tokens)
+                if self.stopwords:
+                    tokens = self.removeStopwords(line=tokens)
                 _c+=1
                 if _c<5:
                     print(text)
@@ -98,7 +103,8 @@ def runModel(lang, data_path, stopword_path, save_path):
             else:
                 l = [0]
             print(l+sentence)
-            writer.writerow(l+sentence)
+            row = [w.encode('utf-8') for w in sentence]
+            writer.writerow(l+row)
 
 
 @click.command()
@@ -127,6 +133,7 @@ def runViolenceModel(lang, data_path, stopword_path, save_path):
                 l = [2]
             else:
                 raise(Exception("Wrong label: {}".format(label)))
+
             print(l+sentence)
             writer.writerow(l+sentence)
 
