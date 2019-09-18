@@ -26,7 +26,7 @@ In addtion to Twitter API access, you need tweet ID of the [EV dataset](http://r
 To preprocess the tweets, e.g. tokenization, remove stopwords, stemming, just use the ```lib/preprocess_twitter_dataset.py```.
 
 # Train models
-Train new models are straightforward, just run ``` cnn_train.py ``` and provide necessary parameters. If relevant parameters related to pre-trained word embeddings is not provided,
+Train new models are straightforward, just run ``` cnn_train.py ``` and provide necessary parameters. If relevant parameters related to pre-trained word embeddings are not provided,
 the CNN model will not use pre-trained embeddings.
 
 # Reproduce
