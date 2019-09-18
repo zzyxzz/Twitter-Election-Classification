@@ -24,7 +24,7 @@ def SVM_model_TFIDF(dataset_path, lang):
         data = np.array(data)
         labels = np.array(labels)
 
-        # Randomly shuffle data using a constant seed
+        # Randomly shuffle data
         shuffle_indices = np.random.permutation(np.arange(len(labels)))
         print "shuffled index: {}".format(shuffle_indices[:10])
 

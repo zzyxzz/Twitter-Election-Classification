@@ -24,8 +24,8 @@ def download_data(data_path, save_path):
         count = 0
         for line in dict_reader:
             count += 1
-            if count == 11:
-                break
+            # if count == 11:
+            #     break
             tid = line['tid']
             try:
                 tweet = api.get_status(tid)
