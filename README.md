@@ -59,7 +59,7 @@ If relevant parameters related to pre-trained word embeddings
  ```
 are not provided, run
 ```
-python cnn_train --dataset_path "file/path/to/processed/venezuela/data" --lang "es"
+python cnn_train.py --dataset_path "file/path/to/processed/venezuela/data" --lang "es"
 ```
 the CNN model will not use pre-trained embeddings.
 
