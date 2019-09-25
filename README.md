@@ -65,7 +65,7 @@ the CNN model will not use pre-trained embeddings.
 
 To use pre-trained embeddings, run
 ```
-python cnn_train --dataset_path "file/path/to/processed/venezuela/data" --lang "es" --vocab_path "path/to/vocab/file --vector_path "path/to/embedding/vector/file/in/text/format"
+python cnn_train.py --dataset_path "file/path/to/processed/venezuela/data" --lang "es" --vocab_path "path/to/vocab/file --vector_path "path/to/embedding/vector/file/in/text/format"
 ```
  
 # Reproduce
