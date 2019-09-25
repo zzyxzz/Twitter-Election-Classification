@@ -22,6 +22,12 @@ You can also check [conda documentation](https://docs.conda.io/projects/conda/en
 Tweets can be downloaded using Twitter API using the provided script ``download_data.py``. Before running the script, you need the Twitter API ``consumer_token``, ``consumer_secret``, ``access_token``, ``access_secret``. For more information about accessing Twitter API, please check info about [Twitter API access](https://developer.twitter.com/en/apply-for-access.html).
 In addtion to Twitter API access, you need tweet ID of the [EV dataset](http://researchdata.gla.ac.uk/564/), which can be accessed separately. 
 
+Once you have the dataset downloaded, run
+```
+python download_data.py --data_path "path/to/ev/data/file" --save_path "file/path/to/save/downloaded/tweets"
+```
+Then tweets will be save to the file path you provided.
+
 # Preprocess tweets
 To preprocess the tweets, e.g. tokenization, remove stopwords, stemming, just use the ```lib/preprocess_twitter_dataset.py```.
 
