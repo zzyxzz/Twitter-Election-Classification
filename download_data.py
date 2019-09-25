@@ -18,7 +18,7 @@ api = tweepy.API(auth)
 
 @click.command()
 @click.option("--data_path", type=click.Path(exists=True), help="path to file has Tweet IDs")
-@click.option("--save_path", type=click.Path, help="path to file to save tweets")
+@click.option("--save_path", type=click.Path(), help="path to file to save tweets")
 def download_data(data_path, save_path):
     with open(data_path, 'r') as rf, open('{}'.format(save_path), 'w') as wf:
         dict_reader = csv.DictReader(rf)

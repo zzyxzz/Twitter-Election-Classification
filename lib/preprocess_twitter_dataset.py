@@ -67,8 +67,8 @@ class ProcessLineSentence(object):
                     tokens = self.removeStopwords(line=tokens)
                 _c+=1
                 if _c<5:
-                    print(text)
-                    print(tokens)
+                    print text
+                    print tokens
                 label = line[self.label]
                 if len(tokens) > 0:
                     i = 0
@@ -78,53 +78,56 @@ class ProcessLineSentence(object):
                 else:
                     continue
 
-# @click.option("--n_cluster", type=int, help="number of clusters")
+
 @click.command()
-@click.option("--lang", type=str, help="language of dataset")
-@click.option("--data_path", type=str, help="path to dataset")
-@click.option("--stopword_path", type=str, help="path to stopword list")
-@click.option("--save_path", type=str, help="path to save tokens")
+@click.option("--lang", type=click.Choice(['English', 'Spanish', 'None']), help="language of the dataset")
+@click.option("--data_path", type=click.Path(exists=True), help="path to the downloaded tweets dataset")
+@click.option("--stopword_path", type=click.Path(exists=True), help="path to stopword file")
+@click.option("--save_path", type=click.Path(), help="path to save tokenized data")
 def runModel(lang, data_path, stopword_path, save_path):
     if lang == "English":
         stemmer = EnglishStemmer()
-    else:
+    elif lang == "Spanish":
         stemmer = SpanishStemmer()
-    # stemmer=None
+    else:
+        stemmer = None
 
-    print("loading dataset")
+    print "loading dataset"
     line_sentences = ProcessLineSentence(dataPath=data_path, label="election", stopwordPath=stopword_path, stemmer=stemmer)
 
     with open(save_path, 'w') as f:
         writer = csv.writer(f)
         for sentence, label in line_sentences:
-            print(label,sentence)
+            print label,sentence
             if label == "yes":
                 l = [1]
             else:
                 l = [0]
-            print(l+sentence)
+            print l+sentence
             row = [w.encode('utf-8') for w in sentence]
             writer.writerow(l+row)
 
 
 @click.command()
-@click.option("--lang", type=str, help="language of dataset")
-@click.option("--data_path", type=str, help="path to dataset")
-@click.option("--stopword_path", type=str, help="path to stopword list")
-@click.option("--save_path", type=str, help="path to save tokens")
+@click.option("--lang", type=click.Choice(['English', 'Spanish', 'None']), help="language of the dataset")
+@click.option("--data_path", type=click.Path(exists=True), help="path to the downloaded tweets dataset")
+@click.option("--stopword_path", type=click.Path(exists=True), help="path to stopword file")
+@click.option("--save_path", type=click.Path(), help="path to save processed data")
 def runViolenceModel(lang, data_path, stopword_path, save_path):
     if lang == "English":
         stemmer = EnglishStemmer()
-    else:
+    elif lang == "Spanish":
         stemmer = SpanishStemmer()
-    print("loading dataset")
-    # stemmer=None
+    else:
+        stemmer = None
+
+    print "loading dataset"
     line_sentences = ProcessLineSentence(dataPath=data_path, label="violence", stopwordPath=stopword_path, stemmer=stemmer)
 
     with open(save_path, 'w') as f:
         writer = csv.writer(f)
         for sentence, label in line_sentences:
-            print(label,sentence)
+            print label,sentence
             if label == "no":
                 l = [0]
             elif label == "violence":
@@ -134,8 +137,9 @@ def runViolenceModel(lang, data_path, stopword_path, save_path):
             else:
                 raise(Exception("Wrong label: {}".format(label)))
 
-            print(l+sentence)
+            print l+sentence
             writer.writerow(l+sentence)
+
 
 if __name__ == "__main__":
     runViolenceModel()
