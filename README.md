@@ -4,6 +4,8 @@ This repository maintains the required codes for training CNN models used in Twi
 
 # Creating an environment from an environment.yml file
 
+Our code has a number of Python dependencies with particular versions. We recommend use of the Anaconda distribution of Python, and use of the ``environment.yml`` to initialise the dependencies. 
+
 Use the terminal or an Anaconda Prompt for the following steps:
 
 - Create the environment from the ``environment.yml`` file:
@@ -19,10 +21,10 @@ Use the terminal or an Anaconda Prompt for the following steps:
 You can also check [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) for creating environment from yaml file.
 
 # Download tweets
-Tweets can be downloaded using Twitter API using the provided script ``download_data.py``. Before running the script, you need to add the Twitter API's ``consumer_token``, ``consumer_secret``, ``access_token``, ``access_secret`` to ```lib/twitterAPI.json```. For more information about accessing Twitter API, please check info about [Twitter API access](https://developer.twitter.com/en/apply-for-access.html).
-In addtion to Twitter API access, you need tweet ID of the [EV dataset](http://researchdata.gla.ac.uk/564/), which can be accessed separately.
+Tweets can be downloaded using Twitter API using the provided script ``download_data.py``. Before running the script, you need to configure the Twitter API ``consumer_token``, ``consumer_secret``, ``access_token``, ``access_secret`` variables in ```lib/twitterAPI.json``` for accessing the Twitter API.
+For more information about accessing Twitter API, please check info about [Twitter API access](https://developer.twitter.com/en/apply-for-access.html). In addtion to Twitter API access, you need tweet IDs of the [EV dataset](http://researchdata.gla.ac.uk/564/), which can be accessed separately. 
 
-Once the dataset is downloaded, run
+Once the EV dataset is downloaded, run
 ```
 python download_data.py --data_path "path/to/ev/data/file" --save_path "file/path/to/save/downloaded/tweets"
 ```
