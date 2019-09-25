@@ -28,7 +28,7 @@ Once the EV dataset is downloaded, run
 ```
 python download_data.py --data_path "path/to/ev/data/file" --save_path "file/path/to/save/downloaded/tweets"
 ```
-Then tweets will be save to the file path you provided.
+Then tweets will be saved to the file path provided.
 
 # Preprocess tweets
 To preprocess the tweets, e.g. tokenization, remove stopwords, stemming, just use the ```lib/preprocess_twitter_dataset.py```.
