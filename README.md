@@ -94,9 +94,93 @@ To use pre-trained embeddings, run
 ```
 python cnn_train.py --dataset_path "file/path/to/processed/venezuela/data" --lang "es" --vocab_path "path/to/vocab/file --vector_path "path/to/embedding/vector/file/in/text/format"
 ```
- 
+
+## Example steps for training models from scratch
+Step 1: Install Anaconda that works for you system
+```
+https://www.anaconda.com/distribution/
+```
+
+Step 2: Create the environment
+```
+conda env create -f environment.yml
+```
+
+Step 3: Activate the environment
+```
+conda activate journal
+```
+
+Step 4: Download EV datasets that contain Tweet IDs and manual labels
+```
+http://researchdata.gla.ac.uk/564/
+```
+Three csv files: philippines.csv, ghana.csv and venezuela.csv needs to be downloaded separately.
+
+Step 5: config Twitter API
+Apply for Twitter API access
+```
+https://developer.twitter.com/en/apply-for-access.html
+```
+Open ```lib/twitterAPI.json``` and copy paste your ```consumer_token```, ```consumer_secret```, ```access_token``` and ```access_secret``` into
+```
+{"consumer_token": YourConsumerToken, "consumer_secret": YourConsumerSecret, "access_token": YourAccessToken, "access_secret": YourAccessSecret}
+```
+
+Step 6: Download the tweets using the datasets from Step 4
+
+Downalod tweets for Philippines election
+```
+python download_data.py --data_path philippines.csv --save_path philippines_tweets.csv
+```
+
+Downalod tweets for Ghana election
+```
+python download_data.py --data_path ghana.csv --save_path ghana_tweets.csv
+```
+
+Downalod tweets for Venezuela election
+```
+python download_data.py --data_path venezuela.csv --save_path venezuela_tweets.csv
+```
+
+Step 7: Preprocess the downloaded tweets
+
+preprocess tweets from Philippines election
+```
+python lib/preprocess_twitter_dataset.py --lang English --data_path philippines_tweets.csv --save_path philuppines_dataset.csv
+```
+
+preprocess tweets from Ghana election
+```
+python lib/preprocess_twitter_dataset.py --lang English --data_path ghana_tweets.csv --save_path ghana_dataset.csv
+```
+
+preprocess tweets from Venezuela election
+```
+python lib/preprocess_twitter_dataset.py --lang Spanish --data_path venezuela_tweets.csv --save_path venezuela_dataset.csv
+```
+Step 8: Train models using preprocessed datasets
+
+train model from Philippines election dataset
+```
+python cnn_train.py --dataset_path philippines_dataset.csv --lang "en"
+```
+
+train model from Ghana election dataset
+```
+python cnn_train.py --dataset_path ghana_dataset.csv --lang "en"
+```
+
+train model from Venezuela election dataset
+```
+python cnn_train.py --dataset_path venezuela_dataset.csv --lang "es"
+```
+
 # Reproduce
-In order to reproduce the results of CNN models, run
+In order to reproduce the results of CNN models, do the example steps 1, 2 and 3 first.
+
+Then run
 ```
 python cnn_pred_reprod.py
 ``` 
