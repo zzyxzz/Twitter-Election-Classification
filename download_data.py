@@ -2,6 +2,9 @@ import tweepy
 import json
 import csv
 import click
+import logging
+
+logging.basicConfig()
 
 with open('lib/twitterAPI.json', 'r') as f:
     for line in f:
@@ -13,7 +16,7 @@ auth = tweepy.OAuthHandler(twitter_auth['consumer_token'], twitter_auth['consume
 auth.set_access_token(twitter_auth['access_token'], twitter_auth['access_secret'])
 
 print 'setting api'
-api = tweepy.API(auth)
+api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 
 @click.command()
@@ -25,18 +28,19 @@ def download_data(data_path, save_path):
         dict_writer = csv.DictWriter(wf, fieldnames=dict_reader.fieldnames + ['text'])
         dict_writer.writeheader()
         count = 0
+        suc_count = 0
         for line in dict_reader:
             count += 1
-            # if count == 11:
-            #     break
             tid = line['tid']
             try:
                 tweet = api.get_status(tid)
                 print tweet.text
                 line.update({'text': tweet.text.encode('utf-8')})
                 dict_writer.writerow(line)
-            except Exception as e:
+                suc_count += 1
+            except tweepy.TweepError as e:
                 print "tweet cannot be downloaded due to: {}".format(e)
+        print("expect {} tweets, {} downloaded".format(count, suc_count))
 
 
 if __name__ == '__main__':
