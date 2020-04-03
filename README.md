@@ -20,7 +20,9 @@ Use the terminal or an Anaconda Prompt for the following steps:
 ```
 You can also check [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) for creating environment from yaml file.
 
-# Download tweets
+# Reproduce
+
+## Download tweets
 Tweets can be downloaded using Twitter API using the provided script ``download_data.py``. Before running the script, you need to configure the Twitter API ``consumer_token``, ``consumer_secret``, ``access_token``, ``access_secret`` variables in ```lib/twitterAPI.json``` for accessing the Twitter API.
 For more information about accessing Twitter API, please check info about [Twitter API access](https://developer.twitter.com/en/apply-for-access.html). In addtion to Twitter API access, you need tweet IDs of the [EV dataset](http://researchdata.gla.ac.uk/564/), which can be accessed separately. 
 
@@ -49,7 +51,7 @@ tid,uid,handler,election,violence,date,text
 ```
 Then tweets will be saved to the file path provided.
 
-# Preprocess tweets
+## Preprocess tweets
 To preprocess the tweets, e.g. tokenization, remove stopwords, stemming, just use the ```lib/preprocess_twitter_dataset.py```.
 Available options:
 ```
@@ -75,6 +77,19 @@ The processed tweets are tokenized and in csv format (shown in example below ass
 0,random,tweet,
 ...
 ```
+
+## Run the models to get results
+Results of CNN models, run:
+```
+python cnn_pred_reprod.py
+``` 
+The parameters (saved in ```lib/rep_settings.py```) will be automatically loaded.
+
+Results of SVM models, run
+```
+python svm_pred_reprod.py
+```
+Due to the randomness of weight initialization and data availability (e.g. tweets deleted by Twitter user result in fewer data), the results may vary slightly.
 
 # Train models
 Train new models are straightforward, just run ``` cnn_train.py ``` and provide necessary parameters. 
@@ -176,20 +191,5 @@ train model from Venezuela election dataset
 ```
 python cnn_train.py --dataset_path venezuela_dataset.csv --lang "es"
 ```
-
-# Reproduce
-In order to reproduce the results of CNN models, do the example steps 1, 2 and 3 first.
-
-Then run
-```
-python cnn_pred_reprod.py
-``` 
-The parameters (saved in ```lib/rep_settings.py```) will be automatically loaded.
-
-For SVM models, run
-```
-python svm_pred_reprod.py
-```
-Due to the randomness of weight initialization and data availability (e.g. tweets deleted by Twitter user result in fewer data), the results may vary slightly.
 
  
