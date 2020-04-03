@@ -44,7 +44,7 @@ def evaluate():
                     # Collect the predictions here
                     predictions = sess.run(predictions, {input_x: x_test, dropout_keep_prob: 1.0})
                     precision, recall, f1, _ = metrics.precision_recall_fscore_support(y_true=y_test, y_pred=predictions, average='binary')
-                    print "fold {} - precision: {}, recall: {}, f1: {}".format(i, precision, recall, f1)
+                    # print "fold {} - precision: {}, recall: {}, f1: {}".format(i, precision, recall, f1)
                     avg_precision += precision/5.0
                     avg_recall += recall/5.0
                     avg_f1 += f1/5.0

@@ -4,82 +4,18 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - asn1crypto=1.3.0
-  - backports=1.0
-  - backports.functools_lru_cache=1.5
-  - backports_abc=0.5
-  - blas=1.0
-  - boto=2.49.0
-  - boto3=1.9.66
-  - botocore=1.12.189
-  - bz2file=0.98
-  - ca-certificates=2020.1.1
-  - certifi=2019.11.28
-  - cffi=1.12.3
-  - chardet=3.0.4
-  - click=7.0
-  - cryptography=2.8
-  - cycler=0.10.0
-  - docutils=0.15.2
-  - enum34=1.1.6
-  - freetype=2.9.1
-  - functools32=3.2.3.2
-  - futures=3.3.0
+  - click
   - gensim=3.8.0
-  - intel-openmp=2019.4
-  - ipaddress=1.0.23
-  - jmespath=0.9.4
-  - kiwisolver=1.1.0
-  - libcxx=4.0.1
-  - libcxxabi=4.0.1
-  - libedit=3.1.20181209
-  - libffi=3.2.1
-  - libgfortran=3.0.1
-  - libopenblas=0.2.20
-  - libpng=1.6.37
-  - matplotlib=2.2.3
-  - mkl=11.3.3
-  - mkl-service=1.1.2
-  - mkl_fft=1.0.1
-  - mkl_random=1.0.1
-  - ncurses=6.1
-  - nltk=3.4.5
-  - numpy=1.11.3
-  - numpy-base=1.14.3
-  - openssl=1.1.1d
-  - pip=19.2.2
-  - protobuf=3.0.0b2
-  - pycparser=2.19
-  - pyopenssl=19.1.0
-  - pyparsing=2.4.2
+  - nltk
+  - pip
   - python=2.7.16
-  - python-dateutil=2.8.0
-  - pytz=2019.2
-  - readline=7.0
-  - requests=2.22.0
-  - s3transfer=0.1.13
+  - requests
   - scikit-learn=0.17.1
-  - scipy=0.18.1
-  - setuptools=41.0.1
-  - singledispatch=3.4.0.3
-  - six=1.12.0
-  - smart_open=1.9.0
-  - sqlite=3.29.0
-  - subprocess32=3.5.4
   - tensorflow=0.8.0
-  - tk=8.6.8
-  - tornado=5.1.1
-  - unidecode=1.0.23
-  - wheel=0.33.4
-  - yaml=0.1.7
-  - zlib=1.2.11
+  - unidecode
+  - yaml
   - pip:
-    - idna==2.8
-    - oauthlib==3.1.0
-    - pysocks==1.7.0
-    - regex==2019.8.19
-    - requests-oauthlib==1.2.0
-    - tweepy==3.8.0
-    - urllib3==1.25.3
+    - regex
+    - tweepy
 prefix: /usr/local/anaconda3/envs/journal
 
