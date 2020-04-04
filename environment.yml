@@ -1,4 +1,4 @@
-name: journal
+name: myenv
 channels:
   - anaconda
   - conda-forge

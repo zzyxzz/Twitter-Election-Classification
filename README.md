@@ -12,12 +12,17 @@ Use the terminal or an Anaconda Prompt for the following steps:
 ```
       conda env create -f environment.yml
 ```
-- Activate the new environment: ``conda activate myenv``
-- Verify that the new environment was installed correctly:
 
+- Verify that the new environment was installed correctly:
 ```
       conda env list
 ```
+
+- Activate the new environment: 
+```
+conda activate myenv
+```
+
 You can also check [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) for creating environment from yaml file.
 
 NOTE: Before running any command in this instruction, please make sure you are in the ```Twitter-Election-Classification``` folder.
