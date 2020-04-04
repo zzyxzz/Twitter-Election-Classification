@@ -20,10 +20,13 @@ Use the terminal or an Anaconda Prompt for the following steps:
 ```
 You can also check [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) for creating environment from yaml file.
 
-# Reproduce
+NOTE: Before running any command in this instruction, please make sure you are in the ```Twitter-Election-Classification``` folder.
 
-## Download tweets
-Tweets can be downloaded using Twitter API using the provided script ``download_data.py``. Before running the script, you need to configure the Twitter API ``consumer_token``, ``consumer_secret``, ``access_token``, ``access_secret`` variables in ```lib/twitterAPI.json``` for accessing the Twitter API.
+# Replication
+This section shows how to replicate the CNN and SVM results. 
+
+## Download and process tweets
+Tweets can be downloaded using Twitter API using the provided script ``data_replicate.py``. Before running the script, you need to configure the Twitter API ``consumer_token``, ``consumer_secret``, ``access_token``, ``access_secret`` variables in ```lib/twitterAPI.json``` for accessing the Twitter API.
 For more information about accessing Twitter API, please check info about [Twitter API access](https://developer.twitter.com/en/apply-for-access.html). In addtion to Twitter API access, you need tweet IDs of the [EV dataset](http://researchdata.gla.ac.uk/564/), which can be accessed separately. 
 
 The EV dataset is in csv format (shown in the example below):
@@ -37,58 +40,35 @@ tid,uid,handler,election,violence,date
 ```
 
 Once the EV dataset is downloaded, run
-```
-python download_data.py --data_path "path/to/ev/data/file" --save_path "file/path/to/save/downloaded/tweets"
-```
-The downloaded csv file will be in csv format (shown in the example below):
-```
-tid,uid,handler,election,violence,date,text
-796303280896,1048772612,CDEEEE,yes,violence,2016-11-01,This is a tweet about electoral violence
-798360141124,2283746327,ABCCCC,yes,no,unknown,This is a random tweet about election
-796269422126,1427364627,CBAAAA,no,no,unknown,This is a random tweet
-813424462817,1293837483,EDCCCC,no,no,unknown,This is a random tweet
-...
-```
-Then tweets will be saved to the file path provided.
 
-## Preprocess tweets
-To preprocess the tweets, e.g. tokenization, remove stopwords, stemming, just use the ```lib/preprocess_twitter_dataset.py```.
-Available options:
+for downloading and pre-processing tweets of Ghana dataset:
 ```
-Options:
-  --lang [English|Spanish|None]  language of the dataset
-  --data_path PATH               path to the downloaded tweets dataset
-  --stopword_path PATH           path to stopword file
-  --save_path PATH               path to save processed data
-  --help                         Show this message and exit.
+python data_replicate.py --data_path /path/to/ghana/dataset/csv/file --name gh
 ```
-The ``` --lang ``` option will let the codes choose the right stemmer for different languages. Note: If ```None``` is provided, then tweets will be processed without stemming.
-For Venezuela tweets data, set ```--lang=Spanish```. For Ghana and Philippines tweet data, set ```--lang=English```.
-
-e.g. for Venezuela tweets dataset:
+for downloading and pre-processing tweets of Philippines dataset:
 ```
-python lib/preprocess_twitter_dataset.py --lang Spanish --data_path "file/path/to/venezuela/tweets/data" --save_path "path/to/save/processed/tweets/data --stopword_path "file/path/to/stopwords"
+python data_replicate.py --data_path /path/to/philippines/dataset/csv/file --name ph
 ```
-The processed tweets are tokenized and in csv format (shown in example below assuming violence vs non-violence, with stopword removal and stemming)
+for downloading and pre-processing tweets of Venezuela dataset:
 ```
-1,tweet,elector,violenc
-0,random,tweet,elect
-0,random,tweet,
-0,random,tweet,
-...
+python data_replicate.py --data_path /path/to/venezuela/dataset/csv/file --name vz
 ```
+Tweets will be automatically downloaded from Twitter and processed. 
+Tweets before pre-processing are saved in folder ```download/raw```.
+Pre-processed tweets are saved in folder ```download/processed```.
 
 ## Run the models to get results
-Results of CNN models, run:
+To obtain the results of CNN models, run:
 ```
-python cnn_pred_reprod.py
+python cnn_replicate.py
 ``` 
-The parameters (saved in ```lib/rep_settings.py```) will be automatically loaded.
 
-Results of SVM models, run
+To obtain the results of SVM models, run
 ```
-python svm_pred_reprod.py
+python svm_replicate.py
 ```
+Results will be printed on your screen.
+
 Due to the randomness of weight initialization and data availability (e.g. tweets deleted by Twitter user result in fewer data), the results may vary slightly.
 
 # Train models
