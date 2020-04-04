@@ -25,7 +25,7 @@ Use the terminal or an Anaconda Prompt for the following steps:
 
 You can also check [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) for creating environment from yaml file.
 
-NOTE: Before running any command in this instruction, please make sure you are in the ```Twitter-Election-Classification``` folder.
+NOTE: Before running any command in this instruction, please make sure the environment has benn activated and you are in the ```Twitter-Election-Classification``` folder.
 
 # Replication
 This section shows how to replicate the CNN and SVM results. 
