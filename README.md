@@ -20,7 +20,7 @@ Use the terminal or an Anaconda Prompt for the following steps:
 
 - Activate the new environment: 
 ```
-conda activate myenv
+      conda activate myenv
 ```
 
 You can also check [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) for creating environment from yaml file.
