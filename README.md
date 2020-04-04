@@ -113,7 +113,7 @@ python cnn_train.py --dataset_path "file/path/to/processed/twitter/dataset/csv/f
 #### Example for training models from processed Twitter dataset
 train model from the processed Venezuela election dataset
 ```
-python cnn_train.py --dataset_path downloads/processed/ph-tweets.csv --lang "es"
+python cnn_train.py --dataset_path downloads/processed/vz-tweets.csv --lang "es"
 ```
 
  
