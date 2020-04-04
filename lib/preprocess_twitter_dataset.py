@@ -23,7 +23,7 @@ class ProcessLineSentence(object):
         if stopwordPath:
             self.stopwords = self.load_stopword(path=stopwordPath)
         else:
-            self.stopwords = ('####')
+            self.stopwords = ('####_NONE_####')
         self.stemmer = stemmer
         self.label = label
 
@@ -58,17 +58,12 @@ class ProcessLineSentence(object):
         """Iterate through the lines in the dataset."""
         with open(self.dataPath) as fin:
             reader = csv.DictReader(fin)
-            _c = 0
             for line in reader:
                 text = line['text'].decode('utf-8').lower()
                 # text = http.sub('http_link', text)
                 tokens = rule.findall(text)
                 if self.stopwords:
                     tokens = self.removeStopwords(line=tokens)
-                _c+=1
-                if _c<5:
-                    print text
-                    print tokens
                 label = line[self.label]
                 if len(tokens) > 0:
                     i = 0
@@ -79,12 +74,7 @@ class ProcessLineSentence(object):
                     continue
 
 
-@click.command()
-@click.option("--lang", type=click.Choice(['English', 'Spanish', 'None']), help="language of the dataset")
-@click.option("--data_path", type=click.Path(exists=True), help="path to the downloaded tweets dataset")
-@click.option("--stopword_path", type=click.Path(exists=True), help="path to stopword file")
-@click.option("--save_path", type=click.Path(), help="path to save tokenized data")
-def runModel(lang, data_path, stopword_path, save_path):
+def process_election(lang, data_path, stopword_path, save_path):
     if lang == "English":
         stemmer = EnglishStemmer()
     elif lang == "Spanish":
@@ -98,12 +88,10 @@ def runModel(lang, data_path, stopword_path, save_path):
     with open(save_path, 'w') as f:
         writer = csv.writer(f)
         for sentence, label in line_sentences:
-            print label,sentence
             if label == "yes":
                 l = [1]
             else:
                 l = [0]
-            print l+sentence
             row = [w.encode('utf-8') for w in sentence]
             writer.writerow(l+row)
 
@@ -112,8 +100,12 @@ def runModel(lang, data_path, stopword_path, save_path):
 @click.option("--lang", type=click.Choice(['English', 'Spanish', 'None']), help="language of the dataset")
 @click.option("--data_path", type=click.Path(exists=True), help="path to the downloaded tweets dataset")
 @click.option("--stopword_path", type=click.Path(exists=True), help="path to stopword file")
-@click.option("--save_path", type=click.Path(), help="path to save processed data")
-def runViolenceModel(lang, data_path, stopword_path, save_path):
+@click.option("--save_path", type=click.Path(), help="path to save tokenized data")
+def run_election_process(lang, data_path, stopword_path, save_path):
+    process_election(lang, data_path, stopword_path, save_path)
+
+
+def process_violence(lang, data_path, stopword_path, save_path):
     if lang == "English":
         stemmer = EnglishStemmer()
     elif lang == "Spanish":
@@ -127,7 +119,6 @@ def runViolenceModel(lang, data_path, stopword_path, save_path):
     with open(save_path, 'w') as f:
         writer = csv.writer(f)
         for sentence, label in line_sentences:
-            print label,sentence
             if label == "no":
                 l = [0]
             elif label == "violence":
@@ -137,10 +128,17 @@ def runViolenceModel(lang, data_path, stopword_path, save_path):
             else:
                 raise(Exception("Wrong label: {}".format(label)))
 
-            print l+sentence
             writer.writerow(l+sentence)
 
 
+@click.command()
+@click.option("--lang", type=click.Choice(['English', 'Spanish', 'None']), help="language of the dataset")
+@click.option("--data_path", type=click.Path(exists=True), help="path to the downloaded tweets dataset")
+@click.option("--stopword_path", type=click.Path(exists=True), help="path to stopword file")
+@click.option("--save_path", type=click.Path(), help="path to save processed data")
+def run_violence_process(lang, data_path, stopword_path, save_path):
+    process_violence(lang, data_path, stopword_path, save_path)
+
 if __name__ == "__main__":
-    runViolenceModel()
-    # runModel()
+    run_violence_process()
+    # run_election_process()
