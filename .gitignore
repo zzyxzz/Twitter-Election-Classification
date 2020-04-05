@@ -23,7 +23,12 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
+downloads/processed/gh-tweets.csv
+downloads/raw/gh-tweets.csv
+downloads/processed/ph-tweets.csv
+downloads/raw/ph-tweets.csv
+downloads/processed/vz-tweets.csv
+downloads/raw/vz-tweets.csv
 stopwords.py
 # PyInstaller
 #  Usually these files are written by a python script from a template
