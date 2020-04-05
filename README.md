@@ -30,7 +30,7 @@ NOTE: Before running any command in this instruction, please make sure the envir
 # Replication
 This section shows how to replicate the CNN and SVM results. 
 
-## Download and process tweets
+### Download and process tweets
 Tweets can be downloaded using Twitter API using the provided script ``data_replicate.py``. Before running the script, you need to configure the Twitter API ``consumer_token``, ``consumer_secret``, ``access_token``, ``access_secret`` variables in ```lib/twitterAPI.json``` for accessing the Twitter API.
 For more information about accessing Twitter API, please check info about [Twitter API access](https://developer.twitter.com/en/apply-for-access.html). 
 
@@ -76,7 +76,7 @@ Tweets will be automatically downloaded from Twitter and processed.
 Tweets before pre-processing are saved in folder ```download/raw```.
 Pre-processed tweets are saved in folder ```download/processed```.
 
-## Run the models to get results
+### Run the models to get results
 To obtain the results of CNN models, run:
 ```
 python cnn_replicate.py
