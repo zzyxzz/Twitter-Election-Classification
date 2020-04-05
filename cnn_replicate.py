@@ -11,6 +11,7 @@ settings = [ph_model_settings, gh_model_settings, vz_model_settings]
 
 def evaluate():
     for setting in settings:
+        print "loading model..."
         # Evaluation
         # ==================================================
         avg_precision, avg_recall, avg_f1 = 0.0, 0.0, 0.0

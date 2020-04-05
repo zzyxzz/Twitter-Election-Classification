@@ -92,6 +92,7 @@ Due to the randomness of weight initialization and data availability (e.g. tweet
 
 # Train models for new Twitter dataset
 The new Twitter dataset should have the same csv format as the processed tweets described in ``downloads/README.md``. Train new models are straightforward, just run ``` cnn_train.py ``` and provide necessary parameters. 
+To check all the available parameters, run ```python cnn_train.py -h```.
 
 If relevant parameters related to pre-trained word embeddings
  e.g.
