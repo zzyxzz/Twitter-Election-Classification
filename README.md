@@ -86,7 +86,7 @@ To obtain the results of SVM models, run
 ```
 python svm_replicate.py
 ```
-Results will be printed on your screen.
+Results will be printed on the screen.
 
 Due to the randomness of weight initialization and data availability (e.g. tweets deleted by Twitter user result in fewer data), the results may vary slightly.
 
