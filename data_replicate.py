@@ -16,9 +16,9 @@ def download_and_process_tweets(data_path, name):
         stopword_path = 'downloads/stopwords/english_stopwords.txt'
 
     if not os.path.exists('downloads/raw/'):
-        os.makedirs('downloads/raw/')
+        os.mkdir('downloads/raw/')
     if not os.path.exists('downloads/processed/'):
-        os.makedirs('downloads/processed/')
+        os.mkdir('downloads/processed/')
 
     save_path_raw = 'downloads/raw/{}-tweets.csv'.format(name)
     save_path_processed = 'downloads/processed/{}-tweets.csv'.format(name)
