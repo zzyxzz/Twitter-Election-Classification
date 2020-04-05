@@ -1,6 +1,7 @@
 from lib.preprocess_twitter_dataset import process_violence
 from download_data import download_data
 import click
+import os
 
 
 @click.command()
@@ -13,6 +14,12 @@ def download_and_process_tweets(data_path, name):
     else:
         lang = 'English'
         stopword_path = 'downloads/stopwords/english_stopwords.txt'
+
+    if not os.path.exists('downloads/raw/'):
+        os.makedirs('downloads/raw/')
+    if not os.path.exists('downloads/processed/'):
+        os.makedirs('downloads/processed/')
+
     save_path_raw = 'downloads/raw/{}-tweets.csv'.format(name)
     save_path_processed = 'downloads/processed/{}-tweets.csv'.format(name)
     download_data(data_path=data_path, save_path=save_path_raw)
