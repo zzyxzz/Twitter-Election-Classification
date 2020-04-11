@@ -90,6 +90,24 @@ Results will be printed on the screen.
 
 Due to the randomness of weight initialization and data availability (e.g. tweets deleted by Twitter user result in fewer data), the results may vary slightly.
 
+### Supplementary Material Table 3
+Print the basic statistics of tweet dataset:
+```
+python tweet_stats_replicate.py 
+```
+
+### Supplementary Material Figure 1-3
+Plot the word2vec embedding in 2D, showing the feature of word2vec that similar words are close to each other in the embedding space.
+```
+python 2d_embed_replicate.py 
+```
+
+### Supplementary Material Figure 4
+Plot the clustering analysis by varying the K parameter:
+```
+python clustering_k_replicate.py 
+```
+
 # Train models for new Twitter dataset
 The new Twitter dataset should have the same csv format as the processed tweets described in ``downloads/README.md``. Train new models are straightforward, just run ``` cnn_train.py ``` and provide necessary parameters. 
 To check all the available parameters, run ```python cnn_train.py -h```.
