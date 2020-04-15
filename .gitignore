@@ -30,6 +30,7 @@ downloads/raw/ph-tweets.csv
 downloads/processed/vz-tweets.csv
 downloads/raw/vz-tweets.csv
 stopwords.py
+events.py
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
